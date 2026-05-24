@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('ledger');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Format Date
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Category Styling Hues
+const categoryAccents = {
+  'Geopolitics': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
+  'Economics': 'text-red-400 border-red-400/20 bg-red-400/5',
+  'Polity & Governance': 'text-sovereign border-sovereign/20 bg-sovereign/5',
+  'Technology': 'text-cyber border-cyber/20 bg-cyber/5'
+};
+const accentClass = categoryAccents[post.data.category] || categoryAccents['Technology'];
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary}>
+  <article class="max-w-3xl mx-auto space-y-8 animate-fade-in">
+    
+    <!-- Back Navigation -->
+    <div>
+      <a href="/ledger" class="inline-flex items-center space-x-2 text-xs font-heading font-semibold text-silver/40 hover:text-sovereign tracking-wider transition-colors duration-200 group">
+        <svg class="w-4 h-4 transform transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span>BACK_TO_LEDGER()</span>
+      </a>
+    </div>
+
+    <!-- Article Header -->
+    <div class="space-y-4 border-b border-white/5 pb-8">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <span class={`text-[10px] font-heading uppercase tracking-wider px-2.5 py-0.5 rounded border ${accentClass}`}>
+          {post.data.category}
+        </span>
+        <time datetime={post.data.date.toISOString()} class="text-xs font-mono text-silver/40">
+          {formattedDate}
+        </time>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
+        {post.data.title}
+      </h1>
+      <p class="text-base sm:text-lg text-silver/60 italic font-medium leading-relaxed pt-2">
+        "{post.data.summary}"
+      </p>
+    </div>
+
+    <!-- Editorial Content Section -->
+    <div class="prose prose-invert prose-silver max-w-none text-silver/80 leading-relaxed space-y-6 text-sm sm:text-base">
+      <Content />
+    </div>
+
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Premium styles inside editorial markdown container */
+  .prose h2 {
+    @apply text-xl sm:text-2xl font-heading font-bold text-white mt-10 mb-4 border-b border-white/5 pb-2;
+  }
+  .prose h3 {
+    @apply text-lg font-heading font-bold text-sovereign mt-8 mb-3;
+  }
+  .prose p {
+    @apply mb-5 leading-relaxed text-silver/70;
+  }
+  .prose ul {
+    @apply list-disc list-inside space-y-2 mb-6 pl-4 text-silver/70;
+  }
+  .prose li strong {
+    @apply text-white font-medium;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-sovereign bg-white/5 px-6 py-4 rounded-r-lg italic text-silver/80 mb-6;
+  }
+  .prose pre {
+    @apply p-4 rounded-lg bg-dark-950 border border-white/5 font-mono text-xs text-silver/90 leading-relaxed overflow-x-auto my-6;
+  }
+  .prose code {
+    @apply font-mono text-xs text-cyber bg-dark-950 px-1.5 py-0.5 rounded border border-white/5;
+  }
+</style>

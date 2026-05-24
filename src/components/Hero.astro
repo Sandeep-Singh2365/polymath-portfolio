@@ -1,0 +1,199 @@
+---
+// Hero.astro
+// Toggles between Developer Mode (Cyber Emerald) and Thinker Mode (Sovereign Gold)
+---
+
+<section id="polymath-hero" class="relative overflow-hidden py-10 md:py-20 flex flex-col items-center justify-center border-b border-white/5 transition-colors duration-500">
+  
+  <!-- Toggle Switcher Widget -->
+  <div class="z-20 flex items-center justify-center space-x-4 glassmorphism px-2 py-2 rounded-full border border-white/10 mb-12 select-none shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+    <button 
+      id="toggle-dev-mode" 
+      class="px-6 py-2 rounded-full text-sm font-heading font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 focus:outline-none"
+    >
+      <span class="w-2.5 h-2.5 rounded-full bg-cyber animate-pulse"></span>
+      <span>DEV_ENGINEER</span>
+    </button>
+    <button 
+      id="toggle-thinker-mode" 
+      class="px-6 py-2 rounded-full text-sm font-heading font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 focus:outline-none"
+    >
+      <span class="w-2.5 h-2.5 rounded-full bg-sovereign animate-pulse"></span>
+      <span>POLICY_THINKER</span>
+    </button>
+  </div>
+
+  <div class="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 z-10">
+    
+    <!-- Hero Details Display Area -->
+    <div class="flex-1 space-y-6 text-center md:text-left transition-all duration-500">
+      
+      <!-- Developer Hero Card -->
+      <div id="hero-dev-content" class="animate-fade-in space-y-6">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-cyber/10 border border-cyber/20 text-cyber font-mono text-xs">
+          <span>// STACK: SPRING_BOOT | FAST_API | POSTGRES</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none text-white font-heading">
+          Engineering <span class="text-gradient-cyber">High-Scale</span> Systems
+        </h1>
+        <p class="text-base sm:text-lg text-silver/70 max-w-2xl leading-relaxed">
+          I'm <strong class="text-white font-semibold">Sandeep Singh</strong>. A computer systems engineer who develops robust backend architectures, normalizes high-throughput databases, and writes clean, distributed services in Java and Python. Formerly a Graduate Engineering Trainee at <span class="text-cyber">Addverb Technologies</span>.
+        </p>
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+          <a href="#projects" class="btn-cyber flex items-center space-x-2">
+            <span>EXPLORE_BUILDS()</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+          <a href="#contact" class="btn-outline">GET_IN_TOUCH</a>
+        </div>
+      </div>
+
+      <!-- Thinker Hero Card (Hidden by Default) -->
+      <div id="hero-thinker-content" class="hidden space-y-6">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-sovereign/10 border border-sovereign/20 text-sovereign font-heading text-xs uppercase tracking-widest">
+          <span>Polity • Macroeconomics • Geopolitics</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none text-white font-heading">
+          Deconstructing <span class="text-gradient-gold">Global States</span>
+        </h1>
+        <p class="text-base sm:text-lg text-silver/70 max-w-2xl leading-relaxed">
+          I view constitutional frameworks, monetary policy levers, and regional trade corridors through the rigorous logic of a systems architect. From dissecting <span class="text-sovereign font-semibold">Article 12</span> of the Indian Polity to modeling <span class="text-sovereign font-semibold">Caucasus trade pivots</span>, I research distributed human systems.
+        </p>
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+          <a href="/ledger" class="btn-gold flex items-center space-x-2">
+            <span>READ_LEDGER</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+            </svg>
+          </a>
+          <a href="/about" class="btn-outline">ENTER_THE_MATRIX</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dual Visual Engine (Interactive Mock Graphic) -->
+    <div class="flex-1 w-full flex items-center justify-center z-10">
+      <div class="relative w-72 h-72 sm:w-80 sm:h-80 transition-transform duration-700 hover:scale-105">
+        
+        <!-- Outer Glowing Rings -->
+        <div id="graphic-ring" class="absolute inset-0 rounded-full border border-dashed animate-[spin_60s_linear_infinite] transition-colors duration-500"></div>
+        <div id="graphic-glow" class="absolute inset-4 rounded-full filter blur-xl opacity-20 transition-all duration-500"></div>
+        
+        <!-- Central Polymathic Interactive Orb -->
+        <div class="absolute inset-8 rounded-full bg-dark-800/80 border border-white/10 flex flex-col items-center justify-center shadow-[inset_0_2px_20px_rgba(255,255,255,0.05)]">
+          <div class="text-center p-6 space-y-2">
+            <div id="orb-title" class="font-heading font-extrabold text-2xl tracking-wider uppercase transition-colors duration-500">
+              CORE_0
+            </div>
+            <div id="orb-subtitle" class="font-mono text-[10px] text-silver/50 tracking-widest transition-colors duration-500">
+              [ACTIVE_SYSTEM]
+            </div>
+            
+            <!-- Dynamic Mini Specs Console -->
+            <div id="orb-console" class="font-mono text-[10px] text-silver/60 pt-4 leading-relaxed text-left max-w-[150px] mx-auto select-none space-y-1">
+              <div>&gt; latency: 0.2ms</div>
+              <div>&gt; integrity: 1.0</div>
+              <div>&gt; process: active</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const devBtn = document.getElementById('toggle-dev-mode');
+  const thinkerBtn = document.getElementById('toggle-thinker-mode');
+  const devContent = document.getElementById('hero-dev-content');
+  const thinkerContent = document.getElementById('hero-thinker-content');
+  
+  // Graphic References
+  const ring = document.getElementById('graphic-ring');
+  const glow = document.getElementById('graphic-glow');
+  const orbTitle = document.getElementById('orb-title');
+  const orbSubtitle = document.getElementById('orb-subtitle');
+  const orbConsole = document.getElementById('orb-console');
+
+  // Toggle Functionality
+  function activateDevMode() {
+    // Buttons
+    devBtn?.classList.add('bg-cyber', 'text-dark-950', 'shadow-[0_0_15px_rgba(16,185,129,0.3)]');
+    devBtn?.classList.remove('text-silver/60');
+    thinkerBtn?.classList.remove('bg-sovereign', 'text-dark-950', 'shadow-[0_0_15px_rgba(212,175,55,0.3)]');
+    thinkerBtn?.classList.add('text-silver/60');
+
+    // Contents
+    devContent?.classList.remove('hidden');
+    devContent?.classList.add('animate-fade-in');
+    thinkerContent?.classList.add('hidden');
+
+    // Graphic State
+    ring?.classList.remove('border-sovereign/40');
+    ring?.classList.add('border-cyber/40');
+    glow?.classList.remove('bg-sovereign');
+    glow?.classList.add('bg-cyber');
+    
+    if (orbTitle) {
+      orbTitle.textContent = "CORE_0";
+      orbTitle.className = "font-heading font-extrabold text-2xl tracking-wider uppercase text-cyber";
+    }
+    if (orbSubtitle) {
+      orbSubtitle.textContent = "[ENGINEER_ONLINE]";
+    }
+    if (orbConsole) {
+      orbConsole.innerHTML = `
+        <div>&gt; STACK: Java/Spring</div>
+        <div>&gt; DB: PostgreSQL</div>
+        <div>&gt; BUS: RabbitMQ</div>
+        <div>&gt; STATUS: Compile_OK</div>
+      `;
+    }
+  }
+
+  function activateThinkerMode() {
+    // Buttons
+    thinkerBtn?.classList.add('bg-sovereign', 'text-dark-950', 'shadow-[0_0_15px_rgba(212,175,55,0.3)]');
+    thinkerBtn?.classList.remove('text-silver/60');
+    devBtn?.classList.remove('bg-cyber', 'text-dark-950', 'shadow-[0_0_15px_rgba(16,185,129,0.3)]');
+    devBtn?.classList.add('text-silver/60');
+
+    // Contents
+    thinkerContent?.classList.remove('hidden');
+    thinkerContent?.classList.add('animate-fade-in');
+    devContent?.classList.add('hidden');
+
+    // Graphic State
+    ring?.classList.remove('border-cyber/40');
+    ring?.classList.add('border-sovereign/40');
+    glow?.classList.remove('bg-cyber');
+    glow?.classList.add('bg-sovereign');
+
+    if (orbTitle) {
+      orbTitle.textContent = "CORE_1";
+      orbTitle.className = "font-heading font-extrabold text-2xl tracking-wider uppercase text-sovereign";
+    }
+    if (orbSubtitle) {
+      orbSubtitle.textContent = "[ANALYST_ONLINE]";
+    }
+    if (orbConsole) {
+      orbConsole.innerHTML = `
+        <div>&gt; LAW: Article 12</div>
+        <div>&gt; GEOPOL: Caucasus</div>
+        <div>&gt; ECON: Hazlitt Ch22</div>
+        <div>&gt; MODEL: Realpolitik</div>
+      `;
+    }
+  }
+
+  // Click Handlers
+  devBtn?.addEventListener('click', activateDevMode);
+  thinkerBtn?.addEventListener('click', activateThinkerMode);
+
+  // Initialize
+  activateDevMode();
+</script>

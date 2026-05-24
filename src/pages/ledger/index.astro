@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LedgerCard from '../../components/LedgerCard.astro';
+import { getCollection } from 'astro:content';
+
+// Query active markdown posts, sorted by date descending
+const posts = await getCollection('ledger', ({ data }) => {
+  return data.draft !== true;
+});
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Thought Ledger" description="A minimalist intellectual feed displaying short essays and viewpoints on geopolitics, macroeconomic systems, and software engineering.">
+  <div class="space-y-12">
+    
+    <!-- Page Header -->
+    <div class="space-y-4 border-b border-white/5 pb-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold font-heading text-white">
+        Thought <span class="text-gradient-gold">Ledger</span>
+      </h1>
+      <p class="text-base sm:text-lg text-silver/70 max-w-3xl leading-relaxed">
+        A structured chronological feed displaying micro-thoughts, technical systems articles, and policy critiques across economics, geopolitics, and law.
+      </p>
+    </div>
+
+    <!-- Dynamic Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {posts.map(post => (
+        <div class="animate-fade-in">
+          <LedgerCard 
+            title={post.data.title}
+            date={post.data.date}
+            category={post.data.category}
+            summary={post.data.summary}
+            slug={post.slug}
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>

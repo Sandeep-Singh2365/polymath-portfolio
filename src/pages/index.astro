@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectExplorer from '../components/ProjectExplorer.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Gateway">
+  <div class="space-y-16">
+    
+    <!-- Dynamic Hero Header (Toggles between Engineer and Analyst Mode) -->
+    <Hero />
+
+    <!-- Project Portfolio Section (With sorting tabs) -->
+    <ProjectExplorer />
+
+    <!-- Native Serverless Form Connection Section -->
+    <ContactForm />
+
+  </div>
+</BaseLayout>

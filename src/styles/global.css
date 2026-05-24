@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-dark: 13, 15, 18;       /* #0D0F12 */
+    --color-bg-navy: 18, 22, 32;       /* #121620 */
+    --color-gold: 212, 175, 55;        /* #D4AF37 */
+    --color-emerald: 16, 185, 129;     /* #10B981 */
+    --color-silver: 226, 232, 240;     /* #E2E8F0 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #0D0F12;
+    color: #E2E8F0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    @apply antialiased bg-dark-900 text-silver selection:bg-sovereign selection:text-dark-950 min-h-screen flex flex-col overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    @apply tracking-wide font-semibold text-white;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-light via-sovereign to-gold-dark;
+  }
+  
+  .text-gradient-cyber {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-cyber to-emerald-600;
+  }
+  
+  .border-gradient-gold {
+    border-image: linear-gradient(to right, #D4AF37, #B08F22) 1;
+  }
+
+  .glassmorphism {
+    @apply bg-dark-800/40 backdrop-blur-md border border-white/5;
+  }
+
+  .interactive-card {
+    @apply glassmorphism rounded-xl p-6 transition-all duration-300 hover:border-sovereign/30 hover:shadow-[0_0_20px_rgba(212,175,55,0.05)] hover:-translate-y-1;
+  }
+
+  .btn-gold {
+    @apply px-6 py-2.5 rounded-lg bg-sovereign hover:bg-gold-light text-dark-950 font-semibold tracking-wider transition-all duration-300 font-heading hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] active:scale-95;
+  }
+
+  .btn-outline {
+    @apply px-6 py-2.5 rounded-lg border border-white/20 hover:border-white/50 text-white font-medium tracking-wide transition-all duration-300 active:scale-95;
+  }
+
+  .btn-cyber {
+    @apply px-6 py-2.5 rounded-lg bg-cyber hover:bg-emerald-400 text-dark-950 font-semibold tracking-wider transition-all duration-300 font-heading hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] active:scale-95;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0F12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A1F2C;
+  border-radius: 4px;
+  border: 1px solid #121620;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}

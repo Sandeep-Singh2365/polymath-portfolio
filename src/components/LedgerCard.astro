@@ -1,0 +1,87 @@
+---
+// LedgerCard.astro
+interface Props {
+  title: string;
+  date: Date;
+  category: 'Geopolitics' | 'Economics' | 'Polity & Governance' | 'Technology';
+  summary: string;
+  slug: string;
+}
+
+const { title, date, category, summary, slug } = Astro.props;
+
+// Determine category accent color & label background
+const categoryAccents = {
+  'Geopolitics': {
+    text: 'text-amber-400',
+    border: 'border-amber-400/20',
+    bg: 'bg-amber-400/5'
+  },
+  'Economics': {
+    text: 'text-red-400',
+    border: 'border-red-400/20',
+    bg: 'bg-red-400/5'
+  },
+  'Polity & Governance': {
+    text: 'text-sovereign',
+    border: 'border-sovereign/20',
+    bg: 'bg-sovereign/5'
+  },
+  'Technology': {
+    text: 'text-cyber',
+    border: 'border-cyber/20',
+    bg: 'bg-cyber/5'
+  }
+};
+
+const accent = categoryAccents[category] || categoryAccents['Technology'];
+
+// Format Date
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<article class="interactive-card flex flex-col justify-between border-l-2 border-l-white/10 hover:border-l-sovereign transition-all duration-300">
+  <div class="space-y-4">
+    
+    <!-- Meta Info -->
+    <div class="flex items-center justify-between text-xs font-heading">
+      <span class={`px-2.5 py-0.5 rounded border uppercase tracking-wider ${accent.text} ${accent.border} ${accent.bg}`}>
+        {category}
+      </span>
+      <time datetime={date.toISOString()} class="text-silver/40 font-mono">
+        {formattedDate}
+      </time>
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-xl font-bold tracking-wide text-white group-hover:text-sovereign transition-colors duration-300">
+      <a href={`/ledger/${slug}`} class="hover:underline">
+        {title}
+      </a>
+    </h3>
+
+    <!-- Summary -->
+    <p class="text-sm text-silver/60 leading-relaxed">
+      {summary}
+    </p>
+
+  </div>
+
+  <!-- Read Full Post Call -->
+  <div class="flex items-center justify-end pt-6 mt-6 border-t border-white/5">
+    <a 
+      href={`/ledger/${slug}`} 
+      class="text-xs font-heading font-semibold text-silver/50 hover:text-sovereign tracking-wider flex items-center space-x-1.5 group"
+    >
+      <span>READ_POST()</span>
+      <svg class="w-3.5 h-3.5 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
+  </div>
+
+</article>

@@ -1,0 +1,21 @@
+# Build and Cache
+dist/
+.astro/
+node_modules/
+
+# Local Data and Ingestion Sources (Too large for GitHub)
+data/
+projects/
+resumes/
+
+# Logs and system generated
+*.log
+npm-debug.log*
+.system_generated/
+.gemini/
+
+# OS/IDE files
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
