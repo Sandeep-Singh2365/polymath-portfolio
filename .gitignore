@@ -4,7 +4,7 @@ dist/
 node_modules/
 
 # Local Data and Ingestion Sources (Too large for GitHub)
-data/
+/data/
 projects/
 resumes/
 
