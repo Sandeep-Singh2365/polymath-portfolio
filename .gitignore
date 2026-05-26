@@ -4,9 +4,12 @@ dist/
 node_modules/
 
 # Local Data and Ingestion Sources (Too large for GitHub)
+# data/
+# projects/
+# resumes/
 /data/
-projects/
-resumes/
+/projects/
+/resumes/
 
 # Logs and system generated
 *.log
